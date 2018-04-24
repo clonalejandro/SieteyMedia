@@ -15,7 +15,7 @@
  * All rights reserved for clonalejandro ©47471763Q 2017 / 2018
  */
 
-interface IGame IGame
+interface IGame
 {
 
     function start();
