@@ -2,8 +2,11 @@
 
 namespace io\clonalejandro\utils\game;
 
-include ("GameState.php");
+include "GameState.php";
 include "utils/ConsoleUtil.php";
+include "IGame.php";
+
+use IGame;
 
 /**
  * Created by alejandrorioscalera
@@ -21,7 +24,7 @@ include "utils/ConsoleUtil.php";
  * All rights reserved for clonalejandro ©47471763Q 2017 / 2018
  */
 
-class GameManager {
+class GameManager implements IGame  {
 
 
     /** SMALL CONSTRUCTORS **/
@@ -48,6 +51,8 @@ class GameManager {
         while ($this->state != GameState::ENDING){
             //This be executed while state not equals ending
 
+            //TODO: onGameStart
+
             /*
             $input = consoleInput(function (){
                 echo "Write your name: ";
@@ -63,11 +68,10 @@ class GameManager {
 
     /**
      * This function stop the game
-     * @param $onGameEnd
      */
-    public function end($onGameEnd)
+    public function end()
     {
-        $onGameEnd();
+        //TODO: onGameEnd
         $this->setState(GameState::ENDING);
     }
 
