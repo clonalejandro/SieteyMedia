@@ -123,6 +123,11 @@ class GameProcess {
                 rand(0, $this->manager->chancesCount -= 1)
             ];
 
+            if ($card == null){
+                echo $this->manager->chancesCount;
+                var_dump($this->getChances());
+            }
+
             $player->addCard($card);
             $this->removeCardFromList($card);
             $this->onCardGenerate($player, $this->getCardName($card));

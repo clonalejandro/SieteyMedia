@@ -39,7 +39,7 @@ class GameManager extends GameProcess implements IGame {
 
     /** SMALL CONSTRUCTORS **/
 
-    public $state, $human, $bot, $chances, $loser, $chancesCount = 40;
+    public $state, $human, $bot, $chances, $loser, $chancesCount;
 
     /**
      * GameManager constructor.
@@ -61,6 +61,7 @@ class GameManager extends GameProcess implements IGame {
         //Define the main values
         $this->setState(GameState::WAITING);
         $this->initArr();
+        $this->chancesCount = 40;
 
         do $this->onGameStart();
         while ($this->state != GameState::ENDING);
@@ -119,7 +120,9 @@ class GameManager extends GameProcess implements IGame {
         $caseG = $botPoints > 7.5 && $humanPoints > 7.5 && $botPoints < $humanPoints; //Loser is bot
 
         //Check cases
-        if (($caseA) || ($caseB) || ($caseC) || ($caseD))
+        if ($botPoints > 7.5 && $humanPoints <= 7.5)
+            $this->setLoser($this->bot);
+        else if (($caseA) || ($caseB) || ($caseC) || ($caseD))
             $this->setLoser($this->human);
         else if (($caseE) || ($caseF) || ($caseG))
             $this->setLoser($this->bot);
