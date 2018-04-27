@@ -3,6 +3,7 @@
 namespace io\clonalejandro\utils\game;
 
 use io\clonalejandro\cards\ICard;
+use io\clonalejandro\utils\ConsoleUtil;
 use io\clonalejandro\utils\players\Bot;
 use io\clonalejandro\utils\players\Human;
 use io\clonalejandro\utils\players\IPlayer;
@@ -62,12 +63,12 @@ class GameProcess {
         $key = null;
 
         do {
-            $key = consoleInput(function (){
+            $key = ConsoleUtil::consoleInput(function (){
                 echo "Pulse Plantarse (p) o Continuar (c): ";
             });
         } while ($key != "c" && $key != "p");
 
-        consoleSpace(); //Break line
+        ConsoleUtil::consoleSpace(); //Break line
 
         if ($key == "c") $this->gameProcess();
         else if ($key == "p") $this->botProcess();
@@ -114,7 +115,7 @@ class GameProcess {
     private function generateCard($player)
     {
         if ($player->getPoints() > 7.5){
-            $this->manager->loser = $player;
+            $this->manager->setLoser($player);
             $this->reset();
         }
         else {

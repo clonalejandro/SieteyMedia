@@ -1,4 +1,7 @@
 <?php
+
+namespace io\clonalejandro\utils;
+
 /**
  * Created by alejandrorioscalera
  * 24/04/2018
@@ -15,33 +18,39 @@
  * All rights reserved for clonalejandro ©47471763Q 2017 / 2018
  */
 
+final class ConsoleUtil {
 
-/**
- * This function manage the console data input
- * @param $beforeInput
- * @return mixed
- */
-function consoleInput($beforeInput)
-{
-    $beforeInput();
-    return trim(fgets(STDIN));
+
+    /** REST **/
+
+    /**
+     * This function manage the console data input
+     * @param $beforeInput
+     * @return mixed
+     */
+    public static function consoleInput($beforeInput)
+    {
+        $beforeInput();
+        return trim(fgets(STDIN));
+    }
+
+
+    /**
+     * This function clear the console
+     */
+    public static function consoleClear()
+    {
+        for ($i = 0; $i <= 50; $i++) echo "\n";
+    }
+
+
+    /**
+     * This function break line
+     */
+    public static function consoleSpace()
+    {
+        echo "\n";
+    }
+
+
 }
-
-
-/**
- * This function clear the console
- */
-function consoleClear()
-{
-    for ($i = 0; $i <= 50; $i++) echo "\n";
-}
-
-
-/**
- * This function break line
- */
-function consoleSpace()
-{
-    echo "\n";
-}
-

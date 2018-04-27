@@ -16,6 +16,7 @@ use io\clonalejandro\cards\Six; use io\clonalejandro\cards\Seven;
 use io\clonalejandro\cards\Jack; use io\clonalejandro\cards\Horse;
 use io\clonalejandro\cards\King; use io\clonalejandro\utils\players\IPlayer;
 use io\clonalejandro\utils\players\Human; use io\clonalejandro\utils\players\Bot;
+use io\clonalejandro\utils\ConsoleUtil;
 
 /**
  * Created by alejandrorioscalera
@@ -53,7 +54,7 @@ class GameManager extends GameProcess implements IGame {
     /** REST **/
 
     /**
-     * This function be executed when the game start
+     * This function start the game
      */
     public function start()
     {
@@ -80,20 +81,20 @@ class GameManager extends GameProcess implements IGame {
 
 
     /**
-     * This function manage reset process
+     * This function reset the game
      */
     public function reset()
     {
         $key = null;
 
         do {
-            $key = consoleInput(function (){
+            $key = ConsoleUtil::consoleInput(function (){
                 echo "Jugador ". $this->getPlayerName($this->getWinner()) ." gana la partida.\n";
                 echo "Pulsa Repetir (r) Abandonar (a): ";
             });
         } while ($key != "r" && $key != "a");
 
-        consoleSpace(); //Break line
+        ConsoleUtil::consoleSpace(); //Break line
 
         if ($key == "r") $this->onGameReset();
         else if ($key == "a") $this->end();
@@ -108,16 +109,20 @@ class GameManager extends GameProcess implements IGame {
         $humanPoints = $this->human->getPoints();
         $botPoints = $this->bot->getPoints();
 
-        if ($humanPoints > 7.5 && $botPoints <= 7.5)
-            $this->loser = $this->human;
-        else if ($humanPoints <= 7.5 && $botPoints > 7.5)
-            $this->loser = $this->bot;
-        else if ($humanPoints > 7.5 && $botPoints > 7.5 || $humanPoints == $botPoints)
-            $this->loser = $this->human;
-        else if ($botPoints > $humanPoints)
-            $this->loser = $this->human;
-        else if ($botPoints < $humanPoints)
-            $this->loser = $this->bot;
+        //Define cases
+        $caseA = $humanPoints > 7.5 && $botPoints > 7.5 || $humanPoints == $botPoints; //Loser is player
+        $caseB = $humanPoints > 7.5 && $botPoints <= 7.5; //Loser is player
+        $caseC = $botPoints > $humanPoints; //Loser is player
+        $caseD = $botPoints > 7.5 && $humanPoints > 7.5 && $humanPoints < $botPoints; //Loser is player
+        $caseE = $humanPoints <= 7.5 && $botPoints > 7.5; //Loser is bot
+        $caseF = $botPoints < $humanPoints; //Loser is bot
+        $caseG = $botPoints > 7.5 && $humanPoints > 7.5 && $botPoints < $humanPoints; //Loser is bot
+
+        //Check cases
+        if (($caseA) || ($caseB) || ($caseC) || ($caseD))
+            $this->setLoser($this->human);
+        else if (($caseE) || ($caseF) || ($caseG))
+            $this->setLoser($this->bot);
 
         $this->reset();
     }
@@ -140,6 +145,16 @@ class GameManager extends GameProcess implements IGame {
     public function getState()
     {
         return $this->state;
+    }
+
+
+    /**
+     * This function set a Player as loser
+     * @param IPlayer $loser
+     */
+    public function setLoser($loser)
+    {
+        $this->loser = $loser;
     }
 
 
