@@ -9,14 +9,13 @@ require_once "cards/Six.php"; require_once "cards/Seven.php"; require_once "card
 require_once "cards/Horse.php"; require_once "cards/King.php"; require_once "utils/players/IPlayer.php"; 
 require_once "utils/players/Human.php"; require_once "utils/players/Bot.php"; require_once "GameProcess.php";
 
-use IGame;
-use io\clonalejandro\cards\Az; use io\clonalejandro\cards\Two;
-use io\clonalejandro\cards\Three; use io\clonalejandro\cards\Four; 
-use io\clonalejandro\cards\Five; use io\clonalejandro\cards\Six; 
-use io\clonalejandro\cards\Seven; use io\clonalejandro\cards\Jack; 
-use io\clonalejandro\cards\Horse; use io\clonalejandro\cards\King;
-use io\clonalejandro\utils\players\IPlayer; use io\clonalejandro\utils\players\Human;
-use io\clonalejandro\utils\players\Bot;
+use IGame; use io\clonalejandro\cards\Az;
+use io\clonalejandro\cards\Two; use io\clonalejandro\cards\Three;
+use io\clonalejandro\cards\Four; use io\clonalejandro\cards\Five;
+use io\clonalejandro\cards\Six; use io\clonalejandro\cards\Seven;
+use io\clonalejandro\cards\Jack; use io\clonalejandro\cards\Horse;
+use io\clonalejandro\cards\King; use io\clonalejandro\utils\players\IPlayer;
+use io\clonalejandro\utils\players\Human; use io\clonalejandro\utils\players\Bot;
 
 /**
  * Created by alejandrorioscalera
@@ -47,10 +46,6 @@ class GameManager extends GameProcess implements IGame {
     public function __construct()
     {
         parent::__construct($this);
-
-        //Define the main values
-        $this->setState(GameState::WAITING);
-        $this->initArr();
         $this->start();
     }
 
@@ -62,6 +57,10 @@ class GameManager extends GameProcess implements IGame {
      */
     public function start()
     {
+        //Define the main values
+        $this->setState(GameState::WAITING);
+        $this->initArr();
+
         do $this->onGameStart();
         while ($this->state != GameState::ENDING);
     }
