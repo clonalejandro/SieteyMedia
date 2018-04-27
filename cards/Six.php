@@ -23,11 +23,16 @@ class Six implements ICard {
 
     /** SMALL CONSTRUCTORS **/
 
-    private $value;
+    private $value, $stick;
 
-    public function __construct()
+    /**
+     * Six constructor.
+     * @param string $stick
+     */
+    public function __construct($stick)
     {
         $this->setValue(6);
+        $this->stick = $stick;
     }
 
 
@@ -43,6 +48,16 @@ class Six implements ICard {
     }
 
 
+    /**
+     * This function return a card type
+     * @return string
+     */
+    public function getStick()
+    {
+        return $this->stick;
+    }
+
+
     /** OTHERS **/
 
     /**
@@ -52,6 +67,16 @@ class Six implements ICard {
     function setValue($value)
     {
         $this->value = $value;
+    }
+
+
+    /**
+     * This function set a card type, example: Copas
+     * @param string $stick
+     */
+    function setStick($stick)
+    {
+        $this->stick = $stick;
     }
 
 

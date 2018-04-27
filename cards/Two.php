@@ -23,23 +23,38 @@ class Two implements ICard {
 
     /** SMALL CONSTRUCTORS **/
 
-    private $value;
+    private $value, $stick;
 
-    public function __construct()
+    /**
+     * Two constructor.
+     * @param string $stick
+     */
+    public function __construct($stick)
     {
         $this->setValue(2);
+        $this->stick = $stick;
     }
 
 
     /** REST **/
 
     /**
-     * This function return a value for Card
+     * This function return a value for Card As
      * @return int
      */
     public function getValue()
     {
         return $this->value;
+    }
+
+
+    /**
+     * This function return a card type
+     * @return string
+     */
+    public function getStick()
+    {
+        return $this->stick;
     }
 
 
@@ -52,6 +67,16 @@ class Two implements ICard {
     function setValue($value)
     {
         $this->value = $value;
+    }
+
+
+    /**
+     * This function set a card type, example: Copas
+     * @param string $stick
+     */
+    function setStick($stick)
+    {
+        $this->stick = $stick;
     }
 
 

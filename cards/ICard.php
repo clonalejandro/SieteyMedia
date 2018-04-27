@@ -20,6 +20,7 @@ namespace io\clonalejandro\cards;
 
 interface ICard {
 
+
     /**
      * This function set a Card value
      * @param integer $value || @param int $value
@@ -28,9 +29,25 @@ interface ICard {
 
 
     /**
+     * This function set a card type, example: Copas
+     * @param string $stick
+     */
+    function setStick($stick);
+
+
+    /**
      * This function return a value for Card
      * @return int
      */
     public function getValue();
+
+
+
+    /**
+     * This function return a card type
+     * @return string
+     */
+    public function getStick();
+
 
 }

@@ -23,11 +23,16 @@ class Five implements ICard {
 
     /** SMALL CONSTRUCTORS **/
 
-    private $value;
+    private $value, $stick;
 
-    public function __construct()
+    /**
+     * Five constructor.
+     * @param string $stick
+     */
+    public function __construct($stick)
     {
         $this->setValue(5);
+        $this->stick = $stick;
     }
 
 
@@ -43,6 +48,16 @@ class Five implements ICard {
     }
 
 
+    /**
+     * This function return a card type
+     * @return string
+     */
+    public function getStick()
+    {
+        return $this->stick;
+    }
+
+
     /** OTHERS **/
 
     /**
@@ -52,6 +67,16 @@ class Five implements ICard {
     function setValue($value)
     {
         $this->value = $value;
+    }
+
+
+    /**
+     * This function set a card type, example: Copas
+     * @param string $stick
+     */
+    function setStick($stick)
+    {
+        $this->stick = $stick;
     }
 
 

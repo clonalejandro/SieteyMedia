@@ -23,11 +23,16 @@ class King implements ICard {
 
     /** SMALL CONSTRUCTORS **/
 
-    private $value;
+    private $value, $stick;
 
-    public function __construct()
+    /**
+     * King constructor.
+     * @param string $stick
+     */
+    public function __construct($stick)
     {
         $this->setValue(0.5);
+        $this->stick = $stick;
     }
 
 
@@ -35,7 +40,7 @@ class King implements ICard {
 
     /**
      * This function return a value for Card As
-     * @return float
+     * @return int
      */
     public function getValue()
     {
@@ -43,15 +48,35 @@ class King implements ICard {
     }
 
 
+    /**
+     * This function return a card type
+     * @return string
+     */
+    public function getStick()
+    {
+        return $this->stick;
+    }
+
+
     /** OTHERS **/
 
     /**
      * This function set a Card value
-     * @param float $value || @param int $value
+     * @param integer $value || @param int $value
      */
     function setValue($value)
     {
         $this->value = $value;
+    }
+
+
+    /**
+     * This function set a card type, example: Copas
+     * @param string $stick
+     */
+    function setStick($stick)
+    {
+        $this->stick = $stick;
     }
 
 

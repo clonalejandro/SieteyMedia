@@ -23,7 +23,7 @@ class Bot implements IPlayer {
 
     /** SMALL CONSTRUCTORS **/
 
-    private $cards, $points, $planted;
+    private $cards, $points = 0, $planted = false;
 
     /**
      * Human constructor.
@@ -71,7 +71,7 @@ class Bot implements IPlayer {
      * This function set this player as planted
      * @param boolean $planted || @param bool $planted
      */
-    public function setPlated($planted)
+    public function setPlanted($planted)
     {
         $this->planted = $planted;
     }

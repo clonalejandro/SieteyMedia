@@ -36,3 +36,12 @@ function consoleClear()
     for ($i = 0; $i <= 50; $i++) echo "\n";
 }
 
+
+/**
+ * This function break line
+ */
+function consoleSpace()
+{
+    echo "\n";
+}
+
